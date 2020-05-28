@@ -23,7 +23,12 @@ namespace Scanner
             return _scannedItems;
         }
 
-        public void ScanItem(string item)
+        public Dictionary<string, LookupItem> GetLookupItems()
+        {
+            return _lookupItems;
+        }
+
+        public ScannedItem ScanItem(string item)
         {
             if (_lookupItems.ContainsKey(item))
             {
@@ -43,7 +48,9 @@ namespace Scanner
                 scannedItem.Quantity = itemCount;
                 scannedItem.Total = total;
                 _scannedItems[item] = scannedItem;
+                return scannedItem;
             }
+            return new ScannedItem(string.Empty, 0, 0);
         }
 
     }
